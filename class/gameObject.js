@@ -1,3 +1,4 @@
+// main object for game and check collisions
 export class GameObject {
 	constructor(x, y, width, height) {
 	  this.x = x;
