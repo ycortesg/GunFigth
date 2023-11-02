@@ -23,6 +23,7 @@ let shootOutTime;
 // Players
 let player1;
 let player2;
+let roundNum;
 
 // Bullets Shown on window
 let bulletsInWindow = [];
@@ -32,6 +33,7 @@ let lastUpdateTime = 0;
 
 menuBtn.addEventListener('click', ()=>{
   document.querySelector(".menu").style.opacity = 0;
+  document.querySelector(".menu").style.zIndex = -1;
   startGame();
   window.requestAnimationFrame(update);
 });
@@ -176,6 +178,7 @@ function startGame() {
     // Creates new player objects
   player1 = new Player(80, 100, 12, 26, "left");
   player2 = new Player(300, 100, 12, 26, "rigth");
+  roundNum = 0;
 
   // Starts the round
   startRound();
@@ -198,6 +201,17 @@ function startTimer() {
 }
 
 function startRound() {
+  removeRoundContainer();
+  roundNum++;
+  const roundContainer = document.createElement("div");
+  roundContainer.classList.add("round");
+  const title = document.createElement("h1");
+  title.innerText = `ROUND ${roundNum}`;
+  document.querySelector(".container").appendChild(roundContainer);
+  const container = document.querySelector(".container");
+  document.querySelector(".container").appendChild(roundContainer);
+  roundContainer.appendChild(title);
+
     // Sets players positions to default 
   player1.setDefault(80, 100, 12, 26);
   player2.setDefault(300, 100, 12, 26);
@@ -213,4 +227,12 @@ function startRound() {
   onkeyup = onkeydown = (e) => {
     handleKeyDownKeyUp(e.key, e.type === "keydown");
   };
+}
+
+function removeRoundContainer() {
+  try {
+    document.querySelector(".round").remove();
+  } catch (error) {
+    
+  }
 }

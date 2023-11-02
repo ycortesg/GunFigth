@@ -215,3 +215,38 @@ main div{
         left: 70%;
     }
 }
+
+.round {
+    height: 480px;
+    width: 640px;
+    background-color: rgba(0, 0, 0, 0.389);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    font-size: 40px;
+    color: rgb(255, 255, 83);
+    animation: rounds 4s ease-in;
+    z-index: 2;
+    opacity: 0;
+}
+
+.round h1 {
+    z-index: 21;
+}
+
+@keyframes rounds {
+    0% {
+        opacity: 0;
+    } 
+    40% {
+        opacity: 1;
+    } 
+    60% {
+        opacity: 1;
+    } 
+    100% {
+        opacity: 0;
+    }
+}
