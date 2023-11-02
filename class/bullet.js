@@ -6,6 +6,7 @@ export class Bullet extends GameObject {
 	velocity = 5;
 	timeLife = 1500;
 	direction;
+	destroyed = false;
 
 	constructor(x, y, width, height, direction) {
 		super(x, y, width, height);
@@ -18,17 +19,13 @@ export class Bullet extends GameObject {
 		this.bulletElement.classList.add("bullet");
 
 		// Posicionamos la bala en función de la dirección
-		if (this.direction === "left") {
-			setCustomProperty(this.bulletElement, "left", this.x + "px");
-		} else if (this.direction === "right") {
-			setCustomProperty(this.bulletElement, "right", this.x + "px");
-		}
-
+		setCustomProperty(this.bulletElement, "left", this.x + "px");
 		setCustomProperty(this.bulletElement, "bottom", this.y + "px");
 
 		// Tiempo que durará la bala en el DOM
 		setTimeout(() => {
 			this.bulletElement.remove();
+			this.destroyed = true;
 		}, this.timeLife);
 	}
 
@@ -44,6 +41,7 @@ export class Bullet extends GameObject {
 			this.x += this.velocity;
 		}
 
-		setCustomProperty(this.bulletElement, "bottom", this.y + "px");
+		setCustomProperty(this.bulletElement, "left", this.x + "px");
+
 	}
 }
