@@ -7,6 +7,8 @@ const gameTimeContainer = document.querySelector("#game-time");
 const shootOutTimeContainer = document.querySelector("#shoot-out");
 const scoreP1Container = document.querySelector("#score-p1");
 const scoreP2Container = document.querySelector("#score-p2");
+const menuBtn = document.querySelector(".start-buttom");
+
 
 const frameRate = 60;
 const bulletWidth = 5;
@@ -27,10 +29,14 @@ let bulletsInWindow = [];
 let lastUpdateTime = 0;
 
 // Starts Game
-startGame();
+
+menuBtn.addEventListener('click', ()=>{
+  document.querySelector(".menu").style.opacity = 0;
+  startGame();
+  window.requestAnimationFrame(update);
+});
 
 // Main game loop
-window.requestAnimationFrame(update);
 
 function update(time) {
   let deltaTime = time - lastUpdateTime;

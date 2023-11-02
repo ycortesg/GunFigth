@@ -16,7 +16,7 @@ export class Bullet extends GameObject {
 
 	setElement() {
 		this.bulletElement = document.createElement("div");
-		this.bulletElement.classList.add("bullet");
+		this.bulletElement.classList.add("bullet-game");
 
 		// Posicionamos la bala en función de la dirección
 		setCustomProperty(this.bulletElement, "left", this.x + "px");
