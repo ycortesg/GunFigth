@@ -23,7 +23,7 @@ body {
 
 }
 .imagen {
-    background: url(/Images/bg-game.jpg);
+    background: url(Images/bg-game.jpg);
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@ body {
 .container-game {
     height: 480px;
     width: 640px;
-    background-color: rgba(0, 0, 0, 0.389);
+    background-color: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
     align-items: center;
