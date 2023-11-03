@@ -37,12 +37,6 @@ menuBtn.addEventListener('click', () => {
 	startGame();
 	window.requestAnimationFrame(update);
   });
-  
-  menuBtn.addEventListener('click', () => {
-	  document.querySelector(".menu").style.opacity = 0;
-	  startGame();
-	  window.requestAnimationFrame(update);
-  });
 
 // Main game loop
 
@@ -78,7 +72,7 @@ function update(time) {
 
 function handleKeyDownKeyUp(e, state) {
 	//movements Player1
-	switch (e) {
+	switch (e.toLowerCase()) {
 		case "w":
 			player1.movingTop = state;
 			break;
@@ -91,7 +85,7 @@ function handleKeyDownKeyUp(e, state) {
 		case "d":
 			player1.movingRight = state;
 			break;
-		case " ":
+		case "q":
 			// When the input is onkeydown and the player dose not have a cooldown and has fired
 			// les than 6 bullets calls the function shoot
 			if (state && !player1.cooldown && player1.bulletsFired < 6) {
@@ -99,19 +93,19 @@ function handleKeyDownKeyUp(e, state) {
 			}
 			break;
 		//movements Player2
-		case "ArrowUp":
+		case "arrowup":
 			player2.movingTop = state;
 			break;
-		case "ArrowDown":
+		case "arrowdown":
 			player2.movingBottom = state;
 			break;
-		case "ArrowLeft":
+		case "arrowleft":
 			player2.movingLeft = state;
 			break;
-		case "ArrowRight":
+		case "arrowright":
 			player2.movingRight = state;
 			break;
-		case "Shift":
+		case "shift":
 			// When the input is onkeydown and the player dose not have a cooldown and has fired
 			// les than 6 bullets calls the function shoot
 			if (state && !player2.cooldown && player2.bulletsFired < 6) {
@@ -157,13 +151,15 @@ function onPlayerDies() {
 	player1.stopMovement();
 	player2.stopMovement();
 
+	updateHeader();
+
 	// onkeyup and onkeydown are unsigned
 	onkeyup = onkeydown = () => { };
 	clearInterval(idGameTimerInterval);
 
 	// in 1.5 seconds the new round starts
 	setTimeout(() => {
-		startTimer();
+		stopTimer();
 		startRound();
 	}, 1500);
 }
@@ -184,12 +180,11 @@ function startGame() {
 
     // Creates new player objects
   player1 = new Player(80, 100, 12, 26, "left");
-  player2 = new Player(300, 100, 12, 26, "rigth");
+  player2 = new Player(500, 100, 12, 26, "rigth");
   roundNum = 0;
 
-	// Creates new player objects
-	player1 = new Player(80, 100, 12, 26, "left");
-	player2 = new Player(500, 100, 12, 26, "rigth");
+  gameContainer.append(player1.getElement());
+  gameContainer.append(player2.getElement());
 
 	// Starts the round
 	startRound();
@@ -200,7 +195,6 @@ function startGame() {
 
 	// Updates header and starts timer
 	updateHeader();
-	startTimer();
 }
 
 // Creates interval that updates the game time every second
@@ -214,35 +208,28 @@ function startTimer() {
 function startRound() {
 
   removeRoundContainer();
-  roundNum++;
-  const roundContainer = document.createElement("div");
-  roundContainer.classList.add("round");
-  const title = document.createElement("h1");
-  title.innerText = `ROUND ${roundNum}`;
-  document.querySelector(".container").appendChild(roundContainer);
-  const container = document.querySelector(".container");
-  document.querySelector(".container").appendChild(roundContainer);
-  roundContainer.appendChild(title);
+  addRoundScreen();
+	setTimeout(() => {
+		setTimeout(() => startTimer(),1000)
+	
+		// Sets players positions to default 
+		player1.setDefault(80, 100, 12, 26);
+		player2.setDefault(500, 100, 12, 26);
+	
+		// Bullets in window array gets emptied
+		bulletsInWindow = [];
+	
+		// Appends players to game Container
+		gameContainer.append(player1.getElement());
+		gameContainer.append(player2.getElement());
+	
+		// onkeyup and onkeydown are signed
+		onkeyup = onkeydown = (e) => {
+			handleKeyDownKeyUp(e.key, e.type === "keydown");
+		};
+	}, 2000);
 
-    // Sets players positions to default 
-  player1.setDefault(80, 100, 12, 26);
-  player2.setDefault(300, 100, 12, 26);
 
-	// Sets players positions to default 
-	player1.setDefault(80, 100, 12, 26);
-	player2.setDefault(500, 100, 12, 26);
-
-	// Bullets in window array gets emptied
-	bulletsInWindow = [];
-
-	// Appends players to game Container
-	gameContainer.append(player1.getElement());
-	gameContainer.append(player2.getElement());
-
-	// onkeyup and onkeydown are signed
-	onkeyup = onkeydown = (e) => {
-		handleKeyDownKeyUp(e.key, e.type === "keydown");
-	};
 }
 
 function removeRoundContainer() {
@@ -251,4 +238,27 @@ function removeRoundContainer() {
   } catch (error) {
     
   }
+}
+
+function addRoundScreen() {
+	roundNum++;
+  const roundContainer = document.createElement("div");
+  roundContainer.classList.add("round");
+  const title = document.createElement("h1");
+  title.innerText = `ROUND ${roundNum}`;
+  const whoWon = document.createElement("h3");
+  if (player1.dead && player2.dead){
+	whoWon.innerText = "DRAW";
+  }else if (player1.dead){
+	whoWon.innerText = "Player 2 Won";
+  }else if (player2.dead){
+	whoWon.innerText = "Player 1 Won";
+  }
+  document.querySelector(".container").appendChild(roundContainer);
+  roundContainer.appendChild(title);
+  roundContainer.appendChild(whoWon);
+}
+
+function stopTimer (){
+	clearInterval(idGameTimerInterval); 
 }
