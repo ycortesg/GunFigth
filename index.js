@@ -36,7 +36,7 @@ menuBtn.addEventListener('click', () => {
 	document.querySelector(".menu").style.zIndex = -1;
 	startGame();
 	window.requestAnimationFrame(update);
-});
+  });
 
 // Main game loop
 
@@ -178,13 +178,13 @@ function updateHeader() {
 
 function startGame() {
 
-	// Creates new player objects
-	player1 = new Player(80, 100, 12, 26, "left");
-	player2 = new Player(500, 100, 12, 26, "rigth");
-	roundNum = 0;
+    // Creates new player objects
+  player1 = new Player(80, 100, 12, 26, "left");
+  player2 = new Player(500, 100, 12, 26, "rigth");
+  roundNum = 0;
 
-	gameContainer.append(player1.getElement());
-	gameContainer.append(player2.getElement());
+  gameContainer.append(player1.getElement());
+  gameContainer.append(player2.getElement());
 
 	// Starts the round
 	startRound();
@@ -202,27 +202,31 @@ function startTimer() {
 	idGameTimerInterval = setInterval(() => {
 		gameTime -= 1;
 		updateHeader();
+		if (gameTime === 0) {
+			gameOver();
+			stopTimer();
+		}
 	}, 1000);
 }
 
 function startRound() {
 
-	removeRoundContainer();
-	addRoundScreen();
+  removeRoundContainer();
+  addRoundScreen();
 	setTimeout(() => {
-		setTimeout(() => startTimer(), 1000)
-
+		setTimeout(() => startTimer(),1000)
+	
 		// Sets players positions to default 
 		player1.setDefault(80, 100, 12, 26);
 		player2.setDefault(500, 100, 12, 26);
-
+	
 		// Bullets in window array gets emptied
 		bulletsInWindow = [];
-
+	
 		// Appends players to game Container
 		gameContainer.append(player1.getElement());
 		gameContainer.append(player2.getElement());
-
+	
 		// onkeyup and onkeydown are signed
 		onkeyup = onkeydown = (e) => {
 			handleKeyDownKeyUp(e.key, e.type === "keydown");
@@ -233,36 +237,63 @@ function startRound() {
 }
 
 function removeRoundContainer() {
-	try {
-		document.querySelector(".round").remove();
-	} catch (error) {
-
-	}
+  try {
+    document.querySelector(".round").remove();
+  } catch (error) {
+    
+  }
 }
 
 function addRoundScreen() {
 	roundNum++;
-	const roundContainer = document.createElement("div");
-	roundContainer.classList.add("round");
-	const title = document.createElement("h1");
-	title.innerText = `ROUND ${roundNum}`;
-	const whoWon = document.createElement("h3");
-	if (player1.dead && player2.dead) {
-		whoWon.innerText = "DRAW";
-	} else if (player1.dead) {
-		whoWon.innerText = "Player 2 Won";
-	} else if (player2.dead) {
-		whoWon.innerText = "Player 1 Won";
+  const roundContainer = document.createElement("div");
+  roundContainer.classList.add("round");
+  const title = document.createElement("h1");
+  title.innerText = `ROUND ${roundNum}`;
+  const whoWon = document.createElement("h3");
+  if (player1.dead && player2.dead){
+	whoWon.innerText = "DRAW";
+  }else if (player1.dead){
+	whoWon.innerText = "Player 2 Won";
+  }else if (player2.dead){
+	whoWon.innerText = "Player 1 Won";
+  }
+  document.querySelector(".container").appendChild(roundContainer);
+  roundContainer.appendChild(title);
+  roundContainer.appendChild(whoWon);
+}
+
+function stopTimer (){
+	clearInterval(idGameTimerInterval); 
+}
+
+function gameOver(){
+	const gameOverContainer = document.createElement("div");
+	gameOverContainer.classList.add("gameOver");
+	const title = document.createElement("h2");
+	title.innerText = "GAME OVER";
+	const restart = document.createElement("h3");
+	restart.innerText = "RESTART";
+	const mainMenu = document.createElement("h3");
+	mainMenu.innerText = "MENU";
+	onkeyup = onkeydown = () => { };
+	document.querySelector(".container").appendChild(gameOverContainer);
+	gameOverContainer.appendChild(title);
+	gameOverContainer.appendChild(restart);
+	gameOverContainer.appendChild(mainMenu);
+
+	restart.addEventListener("click", () => {
+		removegameOverContainer();
+		player1.setDeth();
+		player2.setDeth();
+		startGame();
+	});
+}
+
+function removegameOverContainer() {
+	try {
+	  document.querySelector(".gameOver").remove();
+	} catch (error) {
+	  
 	}
-	document.querySelector(".container").appendChild(roundContainer);
-	roundContainer.appendChild(title);
-	roundContainer.appendChild(whoWon);
-}
-
-function stopTimer() {
-	clearInterval(idGameTimerInterval);
-}
-
-function gameOver() {
-
-}
+  }
