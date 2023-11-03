@@ -98,7 +98,6 @@ main div{
     justify-content: space-between;
     background-color: #000000;
     border: 2px solid #fff;
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
@@ -277,7 +276,7 @@ div.left{
     position: absolute;
     font-size: 40px;
     color: rgb(255, 255, 83);
-    animation: rounds 4s ease-in;
+    animation: rounds 3s ease-in;
     z-index: 2;
     opacity: 0;
     top: 0;
@@ -293,12 +292,45 @@ div.left{
         opacity: 0;
     } 
     40% {
-        opacity: 1;
+        opacity: 0.9;
     } 
     60% {
-        opacity: 1;
+        opacity: 0.9;
     } 
     100% {
         opacity: 0;
+    }
+}
+
+.gameOver {
+    height: 480px;
+    width: 640px;
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    font-size: 40px;
+    color: rgb(255, 255, 83);
+    animation: gameOver 3s ease-in;
+    z-index: 2;
+    opacity: 1;
+    top: 0;
+    gap: 1rem;
+}
+
+.gameOver h3:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: rgb(255, 255, 207);
+}
+
+@keyframes gameOver {
+    0% {
+        opacity: 0;
+    } 
+    100% {
+        opacity: 1;
     }
 }
