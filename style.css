@@ -19,11 +19,11 @@ body {
 .container{
     margin-bottom: 140px;
     margin-left: -1px;
-    margin-top: -53px;
+    margin-top: 35px;
 
 }
 .imagen {
-    background: url(/Images/bg-game.jpg);
+    background: url(Images/bg-game.jpg);
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -31,7 +31,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: 1206px 1078px;
+    background-size: 1216px 1073px;
 }
 
 
@@ -39,7 +39,7 @@ body {
 .container-game {
     height: 480px;
     width: 640px;
-    background-color: rgba(0, 0, 0, 0.389);
+    background-color: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
     align-items: center;
