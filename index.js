@@ -244,6 +244,9 @@ function removeRoundContainer() {
   }
 }
 
+/**
+ * function for add a screen with info of the actually round
+ */
 function addRoundScreen() {
 	roundNum++;
   const roundContainer = document.createElement("div");
@@ -267,6 +270,11 @@ function stopTimer (){
 	clearInterval(idGameTimerInterval); 
 }
 
+/**
+ *  function so that when the game time runs out a "game over" menu appears and 
+ *	there are two options, restart the game or go to the main menu.
+ */
+
 function gameOver(){
 	const gameOverContainer = document.createElement("div");
 	gameOverContainer.classList.add("gameOver");
@@ -282,14 +290,23 @@ function gameOver(){
 	gameOverContainer.appendChild(restart);
 	gameOverContainer.appendChild(mainMenu);
 
+	// when u click in restart button, game will be restarted
 	restart.addEventListener("click", () => {
 		removegameOverContainer();
 		player1.setDeth();
 		player2.setDeth();
 		startGame();
 	});
+	
+	// when u click in menu button, u will go to main menu
+	mainMenu.addEventListener("click", () => {
+		document.querySelector(".menu").style.opacity = 1;
+		document.querySelector(".menu").style.zIndex = 10;
+		gameOverContainer.remove();
+	})
 }
 
+// function for remove gameOverContainer
 function removegameOverContainer() {
 	try {
 	  document.querySelector(".gameOver").remove();
