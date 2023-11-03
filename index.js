@@ -302,6 +302,8 @@ function gameOver(){
 	mainMenu.addEventListener("click", () => {
 		document.querySelector(".menu").style.opacity = 1;
 		document.querySelector(".menu").style.zIndex = 10;
+		player1.setDeth();
+		player2.setDeth();
 		gameOverContainer.remove();
 	})
 }
