@@ -262,3 +262,7 @@ function addRoundScreen() {
 function stopTimer (){
 	clearInterval(idGameTimerInterval); 
 }
+
+function gameOver(){
+	
+}
