@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     position: relative;
@@ -8,15 +9,34 @@
     letter-spacing: 5px;
 }
 
-body{
+body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #252525;
+    background-color: #000000;
+}
+.container{
+    margin-bottom: 140px;
+    margin-left: -1px;
+    margin-top: -53px;
+
+}
+.imagen {
+    background: url(/Images/bg-game.jpg);
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 1206px 1078px;
 }
 
-.container-game{
+
+
+.container-game {
     height: 480px;
     width: 640px;
     background-color: rgba(0, 0, 0, 0.389);
@@ -27,16 +47,16 @@ body{
     overflow: hidden;
 }
 
-.container-game header{
+.container-game header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 15%;
     width: 90%;
-    
+
 }
 
-header div{
+header div {
     text-transform: uppercase;
     display: flex;
     justify-content: center;
@@ -47,7 +67,7 @@ header div{
     width: 100%;
 }
 
-header h3{
+header h3 {
     font-size: 0.65em;
     display: flex;
     justify-content: center;
@@ -56,7 +76,8 @@ header h3{
     width: 100%;
     height: 70%;
 }
-header h4{
+
+header h4 {
     width: 100%;
     height: 30%;
     display: flex;
@@ -65,7 +86,7 @@ header h4{
     text-align: center;
 }
 
-.container-game main{
+.container-game main {
     width: 100%;
     height: 70%;
 
@@ -74,12 +95,13 @@ header h4{
     align-items: center;
 
 }
-main div{
+
+main div {
     height: 100%;
     width: 33%;
 }
 
-.container-game footer{
+.container-game footer {
     width: 100%;
     height: 15%;
     display: flex;
@@ -88,6 +110,7 @@ main div{
 }
 
 .menu {
+   
     position: absolute;
     height: 480px;
     width: 640px;
@@ -181,18 +204,22 @@ main div{
         top: 50%;
         left: 0;
     }
+
     25% {
         top: 0;
         left: 50%;
     }
+
     50% {
         top: 50%;
         left: 97%;
     }
+
     75% {
         top: 97%;
         left: 50%;
     }
+
     100% {
         top: 50%;
         left: 0;
@@ -204,18 +231,22 @@ main div{
         top: 0;
         left: 25%;
     }
+
     25% {
         top: 20%;
         left: 100%;
     }
+
     50% {
         top: 100%;
         left: 25%;
     }
+
     75% {
         top: 50%;
         left: 0;
     }
+
     100% {
         top: 0;
         left: 25%;
@@ -227,32 +258,36 @@ main div{
         bottom: 100%;
         left: 70%;
     }
+
     25% {
         bottom: 50%;
         left: 0;
     }
+
     50% {
         bottom: 0;
         left: 70%;
     }
+
     75% {
         bottom: 50%;
         left: 100%;
     }
+
     100% {
         bottom: 100%;
         left: 70%;
     }
 }
 
-.bullet-game{
+.bullet-game {
     height: 0.3rem;
     width: 0.3rem;
     background-color: yellow;
     position: absolute;
 }
 
-.player{
+.player {
     height: 26px;
     width: 12px;
     background-color: yellow;
@@ -260,7 +295,7 @@ main div{
 
 }
 
-div.left{
+div.left {
     background-color: green;
 }
 
@@ -290,13 +325,16 @@ div.left{
 @keyframes rounds {
     0% {
         opacity: 0;
-    } 
+    }
+
     40% {
         opacity: 0.9;
-    } 
+    }
+
     60% {
         opacity: 0.9;
-    } 
+    }
+
     100% {
         opacity: 0;
     }
@@ -329,7 +367,8 @@ div.left{
 @keyframes gameOver {
     0% {
         opacity: 0;
-    } 
+    }
+
     100% {
         opacity: 1;
     }
