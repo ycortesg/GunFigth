@@ -1,384 +1,423 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    position: relative;
-    color: rgb(255, 255, 65);
-    font-family: 'Press Start 2P', cursive;
-    letter-spacing: 5px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: rgb(255, 255, 65);
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 5px;
+  user-select: none;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
 }
-.container{
-    margin-bottom: 140px;
-    margin-left: -1px;
-    margin-top: 35px;
-
+.container {
+  margin-bottom: 140px;
+  margin-left: -1px;
+  margin-top: 35px;
 }
 .imagen {
-    background: url(Images/bg-game.jpg);
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: 1216px 1073px;
+  background: url(Images/bg-game.jpg);
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 1216px 1073px;
 }
 
-
-
 .container-game {
-    height: 480px;
-    width: 640px;
-    background-color: rgba(0, 0, 0, 1);
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
+  height: 480px;
+  width: 640px;
+  background-color: rgba(0, 0, 0, 1);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .container-game header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 15%;
-    width: 90%;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15%;
+  width: 90%;
 }
 
 header div {
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.5rem;
-    height: 100%;
-    width: 100%;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  width: 100%;
 }
 
 header h3 {
-    font-size: 0.65em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    height: 70%;
+  font-size: 0.65em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 70%;
 }
 
 header h4 {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .container-game main {
-    width: 100%;
-    height: 70%;
+  width: 100%;
+  height: 70%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main div {
-    height: 100%;
-    width: 33%;
+  height: 100%;
+  width: 33%;
 }
 
 .container-game footer {
-    width: 100%;
-    height: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 80%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menu {
-   
-    position: absolute;
-    height: 480px;
-    width: 640px;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #000000;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  user-select: none;
+  position: absolute;
+  height: 480px;
+  width: 640px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
 .start-buttom {
-    margin-bottom: 1rem;
-    z-index: 2;
-    cursor: pointer;
+  margin-bottom: 1rem;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .start-buttom h1 {
-    font-size: 40px;
-    transition: 1s;
-    color: rgb(255, 255, 83);
+  font-size: 40px;
+  transition: 1s;
+  color: rgb(255, 255, 83);
 }
 
 .start-buttom h1:hover {
-    transform: scale(1.2);
-    color: rgb(255, 255, 207);
+  transform: scale(1.2);
+  color: rgb(255, 255, 207);
 }
 
 .game-title {
-    margin-top: 2rem;
-    z-index: 2;
+  margin-top: 2rem;
+  z-index: 2;
 }
 
 .game-title h1 {
-    font-size: 54px;
-    color: rgb(255, 255, 83);
+  font-size: 54px;
+  color: rgb(255, 255, 83);
 }
 
 .players {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: -6rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: -6rem;
 }
 
 .player1,
 .player2 {
-    text-align: center;
-    margin: 0 20px;
+  text-align: center;
+  margin: 0 20px;
 }
 
 .controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .bullet {
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: rgb(223, 212, 1);
-    border-radius: 50%;
-    animation: bulletAnimation 2s linear infinite;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: rgb(223, 212, 1);
+  border-radius: 50%;
+  animation: bulletAnimation 2s linear infinite;
 }
 
 .bullet2 {
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: rgb(223, 212, 1);
-    border-radius: 50%;
-    animation: bulletAnimation2 2s linear infinite;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: rgb(223, 212, 1);
+  border-radius: 50%;
+  animation: bulletAnimation2 2s linear infinite;
 }
 
 .bullet3 {
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: rgb(223, 212, 1);
-    border-radius: 50%;
-    animation: bulletAnimation3 2s linear infinite;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: rgb(223, 212, 1);
+  border-radius: 50%;
+  animation: bulletAnimation3 2s linear infinite;
 }
 
 @keyframes bulletAnimation {
-    0% {
-        top: 50%;
-        left: 0;
-    }
+  0% {
+    top: 50%;
+    left: 0;
+  }
 
-    25% {
-        top: 0;
-        left: 50%;
-    }
+  25% {
+    top: 0;
+    left: 50%;
+  }
 
-    50% {
-        top: 50%;
-        left: 97%;
-    }
+  50% {
+    top: 50%;
+    left: 97%;
+  }
 
-    75% {
-        top: 97%;
-        left: 50%;
-    }
+  75% {
+    top: 97%;
+    left: 50%;
+  }
 
-    100% {
-        top: 50%;
-        left: 0;
-    }
+  100% {
+    top: 50%;
+    left: 0;
+  }
 }
 
 @keyframes bulletAnimation2 {
-    0% {
-        top: 0;
-        left: 25%;
-    }
+  0% {
+    top: 0;
+    left: 25%;
+  }
 
-    25% {
-        top: 20%;
-        left: 100%;
-    }
+  25% {
+    top: 20%;
+    left: 100%;
+  }
 
-    50% {
-        top: 100%;
-        left: 25%;
-    }
+  50% {
+    top: 100%;
+    left: 25%;
+  }
 
-    75% {
-        top: 50%;
-        left: 0;
-    }
+  75% {
+    top: 50%;
+    left: 0;
+  }
 
-    100% {
-        top: 0;
-        left: 25%;
-    }
+  100% {
+    top: 0;
+    left: 25%;
+  }
 }
 
 @keyframes bulletAnimation3 {
-    0% {
-        bottom: 100%;
-        left: 70%;
-    }
+  0% {
+    bottom: 100%;
+    left: 70%;
+  }
 
-    25% {
-        bottom: 50%;
-        left: 0;
-    }
+  25% {
+    bottom: 50%;
+    left: 0;
+  }
 
-    50% {
-        bottom: 0;
-        left: 70%;
-    }
+  50% {
+    bottom: 0;
+    left: 70%;
+  }
 
-    75% {
-        bottom: 50%;
-        left: 100%;
-    }
+  75% {
+    bottom: 50%;
+    left: 100%;
+  }
 
-    100% {
-        bottom: 100%;
-        left: 70%;
-    }
+  100% {
+    bottom: 100%;
+    left: 70%;
+  }
 }
 
 .bullet-game {
-    height: 0.3rem;
-    width: 0.3rem;
-    background-color: yellow;
-    position: absolute;
+  height: 0.3rem;
+  width: 0.3rem;
+  background-color: yellow;
+  position: absolute;
 }
 
 .player {
-    height: 26px;
-    width: 12px;
-    background-color: yellow;
-    position: absolute;
-
+  height: 26px;
+  width: 12px;
+  background-color: yellow;
+  position: absolute;
 }
 
 div.left {
-    background-color: green;
+  background-color: green;
 }
 
-
 .round {
-    height: 480px;
-    width: 640px;
-    background-color: rgba(0, 0, 0, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    font-size: 40px;
-    color: rgb(255, 255, 83);
-    animation: rounds 3s ease-in;
-    z-index: 2;
-    opacity: 0;
-    top: 0;
-    gap: 1rem;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  height: 480px;
+  width: 640px;
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  font-size: 40px;
+  color: rgb(255, 255, 83);
+  animation: rounds 3s ease-in;
+  z-index: 2;
+  opacity: 0;
+  top: 0;
+  gap: 1rem;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
 .round h1 {
-    z-index: 21;
+  z-index: 21;
+  user-select: none;
+  font-size: 1.5em;
 }
 
 @keyframes rounds {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    40% {
-        opacity: 0.9;
-    }
+  40% {
+    opacity: 0.9;
+  }
 
-    60% {
-        opacity: 0.9;
-    }
+  60% {
+    opacity: 0.9;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 .gameOver {
-    height: 480px;
-    width: 640px;
-    background-color: rgba(0, 0, 0, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    font-size: 40px;
-    color: rgb(255, 255, 83);
-    animation: gameOver 3s ease-in;
-    z-index: 2;
-    opacity: 1;
-    top: 0;
-    gap: 1rem;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  height: 480px;
+  width: 640px;
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  font-size: 40px;
+  color: rgb(255, 255, 83);
+  animation: gameOver 3s ease-in;
+  z-index: 2;
+  opacity: 1;
+  top: 0;
+  gap: 3rem;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  user-select: none;
 }
 
-.gameOver h3:hover {
-    cursor: pointer;
-    transform: scale(1.2);
-    color: rgb(255, 255, 207);
+.gameOver div {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gameOver h2 {
+  margin-bottom: 1rem;
+}
+
+.gameOver h3 {
+  font-size: 1em;
+}
+
+.gameOver h5 {
+  transition: 1s;
+}
+
+.gameOver h5:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  color: rgb(255, 255, 207);
 }
 
 @keyframes gameOver {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+footer #bullets-p1, footer #bullets-p2 {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem
+}
+
+footer #bullets-p1 {
+transform: scale(-1, 1);
+}
+
+#bullets-p1 div, #bullets-p2 div {
+    height: 5px;
+    width: 5px;
+    background-color: yellow;
+}
+
+.hide-bullet{
+    opacity: 0;
 }

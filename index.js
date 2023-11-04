@@ -8,8 +8,11 @@ const shootOutTimeContainer = document.querySelector("#shoot-out");
 const scoreP1Container = document.querySelector("#score-p1");
 const scoreP2Container = document.querySelector("#score-p2");
 const menuBtn = document.querySelector(".start-buttom");
+const bulletsContainerP1 = document.querySelector("#bullets-p1");
+const bulletsContainerP2 = document.querySelector("#bullets-p2");
 
-const gameTimeFull = 10;
+const maxBullets = 6;
+const gameTimeFull = 60;
 const frameRate = 60;
 const bulletWidth = 5;
 const bulletHeight = 5;
@@ -27,10 +30,11 @@ let roundNum;
 
 // Bullets Shown on window
 let bulletsInWindow = [];
+let bulletsIcons = {"player1": [], "player2": []};
 let lastUpdateTime = 0;
 
 // Starts Game
-
+createBullets();
 menuBtn.addEventListener('click', () => {
 	document.querySelector(".menu").style.opacity = 0;
 	document.querySelector(".menu").style.zIndex = -1;
@@ -89,7 +93,7 @@ function handleKeyDownKeyUp(e, state) {
 		case "q":
 			// When the input is onkeydown and the player dose not have a cooldown and has fired
 			// les than 6 bullets calls the function shoot
-			if (state && !player1.cooldown && player1.bulletsFired < 6) {
+			if (state && !player1.cooldown && player1.bulletsFired < maxBullets) {
 				shoot(player1, "right");
 			}
 			break;
@@ -109,7 +113,7 @@ function handleKeyDownKeyUp(e, state) {
 		case "shift":
 			// When the input is onkeydown and the player dose not have a cooldown and has fired
 			// les than 6 bullets calls the function shoot
-			if (state && !player2.cooldown && player2.bulletsFired < 6) {
+			if (state && !player2.cooldown && player2.bulletsFired < maxBullets) {
 				shoot(player2, "left");
 			}
 			break;
@@ -133,6 +137,8 @@ function shoot(player, direction) {
 		bulletHeight,
 		direction
 	);
+
+	hideBullet(direction);
 
 	// Adds one bullet fired to player
 	player.bulletsFired += 1;
@@ -175,12 +181,9 @@ function updateHeader() {
 	scoreP2Container.innerText = player1.deaths;
 }
 
-
-// TODO: crear una funcion que muestre el numero de balas que le quede a cada uno en la pantalla
-
-
 function startGame() {
 
+	restartBullets()
     // Creates new player objects
   player1 = new Player(80, 100, 12, 26, "left");
   player2 = new Player(500, 100, 12, 26, "rigth");
@@ -218,6 +221,8 @@ function startRound() {
   addRoundScreen();
 	setTimeout(() => {
 		setTimeout(() => startTimer(),1000)
+		
+		restartBullets()
 	
 		// Sets players positions to default 
 		player1.setDefault(80, 100, 12, 26);
@@ -283,10 +288,18 @@ function gameOver(){
 	gameOverContainer.classList.add("gameOver");
 	const title = document.createElement("h2");
 	title.innerText = "GAME OVER";
-	const restart = document.createElement("h3");
+	const actionsContainer = document.createElement("div");
+
+	const finalResult = document.createElement("h3");
+	finalResult.innerText = player1.deaths < player2.deaths ? "PLAYER 1 WON!" : 
+		(player1.deaths > player2.deaths) ? "PLAYER 2 WON!" : "DRAW"; 
+
+	const restart = document.createElement("h5");
 	restart.innerText = "RESTART";
-	const mainMenu = document.createElement("h3");
+	const mainMenu = document.createElement("h5");
 	mainMenu.innerText = "MENU";
+	actionsContainer.appendChild(restart);
+	actionsContainer.appendChild(mainMenu);
 	
 	disableBullets();
 	onkeyup = onkeydown = () => { };
@@ -294,9 +307,9 @@ function gameOver(){
 	player2.stopMovement();
 
 	document.querySelector(".container").appendChild(gameOverContainer);
+	gameOverContainer.appendChild(finalResult);
 	gameOverContainer.appendChild(title);
-	gameOverContainer.appendChild(restart);
-	gameOverContainer.appendChild(mainMenu);
+	gameOverContainer.appendChild(actionsContainer);
 
 	// when u click in restart button, game will be restarted
 	restart.addEventListener("click", () => {
@@ -327,4 +340,33 @@ function removegameOverContainer() {
 
   function disableBullets() {
 	bulletsInWindow.forEach((bullet) => bullet.unableBullet());
+  }
+
+  function createBullets() {
+	for (let i = 0 ; i<maxBullets ; i++){
+		let bulletP1 = document.createElement('div');
+		let bulletP2 = document.createElement('div');
+		bulletsIcons.player1.push(bulletP1);
+		bulletsIcons.player2.push(bulletP2);
+		bulletsContainerP1.appendChild(bulletP1);
+		bulletsContainerP2.appendChild(bulletP2);
+	}
+  }
+
+  function restartBullets() {
+	for (let player of Object.keys(bulletsIcons)){
+		for (let element of bulletsIcons[player]) {
+			if (element.classList.contains("hide-bullet")){
+				element.classList.remove("hide-bullet");
+			}
+		}
+	}
+  }
+
+  function hideBullet(direction){
+	if (direction === "right"){
+		bulletsIcons.player1[player1.bulletsFired].classList.add("hide-bullet");
+	}else {
+		bulletsIcons.player2[player2.bulletsFired].classList.add("hide-bullet");
+	}
   }
