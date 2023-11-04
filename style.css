@@ -40,6 +40,9 @@ body {
     height: 480px;
     width: 640px;
     background-color: rgba(0, 0, 0, 1);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -316,6 +319,9 @@ div.left {
     opacity: 0;
     top: 0;
     gap: 1rem;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
 .round h1 {
@@ -356,6 +362,9 @@ div.left {
     opacity: 1;
     top: 0;
     gap: 1rem;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
 .gameOver h3:hover {

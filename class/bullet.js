@@ -24,8 +24,7 @@ export class Bullet extends GameObject {
 
 		// Tiempo que durará la bala en el DOM
 		setTimeout(() => {
-			this.bulletElement.remove();
-			this.destroyed = true;
+			this.unableBullet()
 		}, this.timeLife);
 	}
 
@@ -44,4 +43,10 @@ export class Bullet extends GameObject {
 		setCustomProperty(this.bulletElement, "left", this.x + "px");
 
 	}
+
+	unableBullet(){
+		this.bulletElement.remove();
+		this.destroyed = true;
+	}
+
 }

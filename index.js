@@ -9,7 +9,7 @@ const scoreP1Container = document.querySelector("#score-p1");
 const scoreP2Container = document.querySelector("#score-p2");
 const menuBtn = document.querySelector(".start-buttom");
 
-
+const gameTimeFull = 10;
 const frameRate = 60;
 const bulletWidth = 5;
 const bulletHeight = 5;
@@ -43,6 +43,7 @@ menuBtn.addEventListener('click', () => {
 function update(time) {
 	let deltaTime = time - lastUpdateTime;
 	if (deltaTime > 1000 / frameRate) {
+		console.log(idGameTimerInterval)
 
 		// Updates players position
 		player1.updatePlayer();
@@ -158,10 +159,12 @@ function onPlayerDies() {
 	clearInterval(idGameTimerInterval);
 
 	// in 1.5 seconds the new round starts
-	setTimeout(() => {
-		stopTimer();
-		startRound();
-	}, 1500);
+	if (!(player1.dead && player2.dead)){
+		setTimeout(() => {
+			stopTimer();
+			startRound();
+		}, 1500);
+	}
 }
 
 // Updates the header info
@@ -190,7 +193,7 @@ function startGame() {
 	startRound();
 
 	// Set timer to default
-	gameTime = 60;
+	gameTime = gameTimeFull;
 	shootOutTime = 0;
 
 	// Updates header and starts timer
@@ -284,7 +287,12 @@ function gameOver(){
 	restart.innerText = "RESTART";
 	const mainMenu = document.createElement("h3");
 	mainMenu.innerText = "MENU";
+	
+	disableBullets();
 	onkeyup = onkeydown = () => { };
+	player1.stopMovement();
+	player2.stopMovement();
+
 	document.querySelector(".container").appendChild(gameOverContainer);
 	gameOverContainer.appendChild(title);
 	gameOverContainer.appendChild(restart);
@@ -315,4 +323,8 @@ function removegameOverContainer() {
 	} catch (error) {
 	  
 	}
+  }
+
+  function disableBullets() {
+	bulletsInWindow.forEach((bullet) => bullet.unableBullet());
   }
