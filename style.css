@@ -95,11 +95,6 @@ header h4 {
   align-items: center;
 }
 
-main div {
-  height: 100%;
-  width: 33%;
-}
-
 .container-game footer {
   width: 80%;
   height: 15%;
@@ -420,4 +415,37 @@ transform: scale(-1, 1);
 
 .hide-bullet{
     opacity: 0;
+}
+
+div.wall{
+  height: 35px;
+  width: 18px;
+  background-image: url("./Icons/wall.png");
+  background-size: contain;
+  position: absolute;
+  background-repeat: no-repeat;
+  transform: translateX(-3px);
+
+}
+
+div.bush{
+  height: 35px;
+  width: 20px;
+  position: absolute;
+  overflow: hidden;
+  transform: translateX(-3px);
+}
+
+.bush div{
+  overflow: hidden;
+  position: relative;
+  height: 35px;
+  width: 20px;
+}
+
+.bush img{
+  position: absolute;
+  top: 0;
+  height: 35px;
+  width: 20px;
 }

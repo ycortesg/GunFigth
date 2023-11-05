@@ -1,4 +1,3 @@
-import { Bullet } from "./bullet.js";
 import { GameObject } from "./gameObject.js";
 import { setCustomProperty } from "./updateProperties.js";
 
