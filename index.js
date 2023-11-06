@@ -35,6 +35,7 @@ let roundNum;
 let bulletsInWindow = [];
 let bushesInWindow = [];
 let wallsInWindow = [];
+let wallsAndBushesInWindow = [];
 let bulletsIcons = { player1: [], player2: [] };
 let lastUpdateTime = 0;
 
@@ -53,7 +54,6 @@ menuBtn.addEventListener("click", () => {
 function update(time) {
   let deltaTime = time - lastUpdateTime;
   if (deltaTime > 1000 / frameRate) {
-    console.log(idGameTimerInterval);
 
     // Updates players position
     player1.updatePlayer();
@@ -262,8 +262,8 @@ function startRound() {
     // Restart the status of the bushes
     restartBushes();
 
-    // if its not the first round adds a bush or a wall
-    if (roundNum > 1) addWallBush();
+    // if its not the first round and its less than round 6 adds a bush or a wall
+    if (roundNum > 1 && roundNum < 6) addWallBush();
 
     // Sets players positions to default
     player1.setDefault(80, 100, 12, 26);
@@ -407,18 +407,27 @@ function hideBullet(direction) {
   }
 }
 
-// Adds a bush or a wall there is 50% chance of each and the position is random
+// Adds a bush or a wall there is 30% chance of a wall and a 70 % of a bush and the position is random
 function addWallBush() {
-  let posX = Math.floor(Math.random() * 200) + 200;
+  let posX = Math.floor(Math.random() * 100) + 250;
   let posY = Math.floor(Math.random() * 260);
   let obj;
-  if (Math.random() > 0.5) {
+
+  // Makes the position y a value that does not overlaps any other object
+if (wallsAndBushesInWindow.length > 0) {
+  while(wallsAndBushesInWindow.some(e=>{return (e.y+30 > posY && e.y-30 < posY)})){
+    posY = Math.floor(Math.random() * 260);
+  }
+}
+  if (Math.random() > 0.3) {
     obj = new Bush(posX, posY, 18, 35);
     bushesInWindow.push(obj);
   } else {
-    obj = new Wall(posX, posY, 15, 35);
+    obj = new Wall(posX, posY, 18, 35);
     wallsInWindow.push(obj);
   }
+
+  wallsAndBushesInWindow.push(obj);
   gameContainer.append(obj.getElement());
 }
 
