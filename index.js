@@ -172,9 +172,13 @@ function shoot(player, direction) {
 
   // Adds th bullet element to the game container
   gameContainer.appendChild(bullet.getElement());
+
+  if (player.bulletsFired >= maxBullets) startShootOutTimer();
 }
 
 function onPlayerDies() {
+  stopShootOutTimer();
+
   // Stops all movement of both players
   player1.stopMovement();
   player2.stopMovement();
@@ -241,6 +245,7 @@ function startTimer() {
     if (gameTime === 0) {
       gameOver();
       stopTimer();
+      stopShootOutTimer();
     }
   }, 1000);
 }
@@ -249,9 +254,40 @@ function stopTimer() {
   clearInterval(idGameTimerInterval);
 }
 
+function startShootOutTimer() {
+  // If the shootout is runnig then it wont be runned again
+  if (shootOutTime == 0){
+    shootOutTime = 10;
+    idShootOutTimerInterval = setInterval(() => {
+      shootOutTime -= 1;
+      updateHeader();
+      
+      // If the shootout time is 0 or neither player has bullets left 
+      if (shootOutTime === 0 || [player1, player2].every(e=>(e.bulletsFired >= maxBullets))) {
+        // If  there bullets in the window and the time of the shootOut is more than 0 it doesn't 
+        // do anything otherways the shootOut timer is restarted
+        if (bulletsInWindow.some(e=>!e.destroyed) && shootOutTime > 0){}else{
+          shootOutTime = 0;
+          disableBullets();
+  
+          stopTimer();
+          stopShootOutTimer();
+          startRound();
+        }
+      }
+    }, 1000);
+  }
+}
+
+function stopShootOutTimer() {
+  clearInterval(idShootOutTimerInterval);
+}
+
 function startRound() {
   removeRoundContainer();
   addRoundScreen();
+  stopShootOutTimer();
+  shootOutTime = 0;
 
   setTimeout(() => {
     startTimer();
