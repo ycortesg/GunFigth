@@ -291,13 +291,14 @@ header h4 {
   background-position: bottom;
 }
 
-div.rigth {
+div.right {
   transform: scale(-1, 1);
 
 }
 
 .anim-walk{
   animation: anim-walk 1s infinite linear;
+  -moz-animation: anim-walk 1s infinite linear;
 }
 
 @keyframes anim-walk {
@@ -314,15 +315,20 @@ div.rigth {
 .death{
   background-image: url("./Icons/animpdeath2.png");
   animation: anim-death .5s linear;
+  -moz-animation: anim-death .5s linear;
+  width: 50px;
 }
 
 @keyframes anim-death {
   0%{
+    width: 35px;
     background-image: url("./Icons/animpl1.png");
   }
   50%{
+    width: 40px;
     background-image: url("./Icons/animpdeath1.png");
   }100%{
+    width: 50px;
     background-image: url("./Icons/animpdeath2.png");
   }
 }

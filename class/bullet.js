@@ -3,8 +3,8 @@ import { setCustomProperty } from "./updateProperties.js";
 
 export class Bullet extends GameObject {
 	bulletElement;
-	velocity = 10;
-	timeLife = 2000;
+	velocity = 18;
+	timeLife = 1000;
 	direction;
 	destroyed = false;
 

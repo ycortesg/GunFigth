@@ -3,8 +3,8 @@ import { setCustomProperty } from "./updateProperties.js";
 
 export class Player extends GameObject {
 	cooldown = false;
-	velocityY = 1.6;
-	velocityX = 0.8;
+	velocityY = 2.5;
+	velocityX = 1.8;
 	movingTop;
 	movingBottom;
 	movingLeft;
@@ -21,10 +21,10 @@ export class Player extends GameObject {
 	
 		// Define the movement rectangle
 		this.movementRect = {
-			x: x - 70,       
-			y: y - 70,            
-			width: width + 160, 
-			height: height + 245,
+			x: direction === "left" ? x - 60 : x - 125,
+			y: 10,
+			width: width + 150, 
+			height: 265
 		};
 	}
 
@@ -44,6 +44,9 @@ export class Player extends GameObject {
 		this.height = height;
 		this.bulletsFired = 0;
 		this.dead = false;
+		if (this.playerElement.classList.contains("death")){
+			this.playerElement.classList.remove("death");
+		}
 	}
 
 	// Stops all movement
@@ -102,10 +105,6 @@ export class Player extends GameObject {
 	// Updates values on death
 	setDeth() {
 		this.playerElement.classList.add("death");
-		setTimeout(() => {
-		this.playerElement.classList.remove("death");
-			this.playerElement.remove();
-		}, 1500)
 
 		this.width = 0;
 		this.height = 0;

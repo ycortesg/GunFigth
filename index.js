@@ -215,8 +215,8 @@ function startGame() {
   restartBullets();
 
   // Creates new player objects
-  player1 = new Player(80, 100, 22, 26, "left");
-  player2 = new Player(500, 100, 22, 26, "rigth");
+  player1 = new Player(80, 140, 30, 44, "left");
+  player2 = new Player(530, 140, 30, 44, "right");
 
   // Restarts the number of rounds
   roundNum = 0;
@@ -274,7 +274,12 @@ function startShootOutTimer() {
         if (bulletsInWindow.some(e=>!e.destroyed) && shootOutTime > 0){}else{
           shootOutTime = 0;
           disableBullets();
-  
+
+          // Stops all movement of both players
+          player1.stopMovement();
+          player2.stopMovement();
+
+          onkeydown = onkeyup = () => {};
           stopTimer();
           stopShootOutTimer();
           startRound();
@@ -296,6 +301,7 @@ function startRound() {
 
   setTimeout(() => {
     startTimer();
+    [player1, player2].forEach(e=>{e.cooldownAction()})
 
     // Restart the amount of bullets each player has fired
     restartBullets();
@@ -307,8 +313,8 @@ function startRound() {
     if (roundNum > 1 && roundNum < 6) addWallBush();
 
     // Sets players positions to default
-    player1.setDefault(80, 100, 30, 44);
-    player2.setDefault(500, 100,30, 44);
+    player1.setDefault(80, 140, 30, 44);
+    player2.setDefault(530, 140,30, 44);
 
     // Bullets in window array gets emptied
     bulletsInWindow = [];
