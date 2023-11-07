@@ -282,14 +282,18 @@ header h4 {
 }
 
 .player {
-  height: 26px;
-  width: 12px;
-  background-color: yellow;
+  height: 70px;
+  width: 35px;
+  background-image: url("./Icons/animpl1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
+  background-position: bottom;
 }
 
-div.left {
-  background-color: green;
+div.rigth {
+  transform: scale(-1, 1);
+
 }
 
 .round {
