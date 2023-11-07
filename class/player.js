@@ -75,6 +75,16 @@ export class Player extends GameObject {
 			this.x += this.velocityX;
 		}
 
+		if (this.movingTop || this.movingBottom || this.movingLeft || this.movingRight){
+			if (!this.playerElement.classList.contains("anim-walk")){
+				this.playerElement.classList.add("anim-walk");
+			}
+		}else {
+			if (this.playerElement.classList.contains("anim-walk")){
+				this.playerElement.classList.remove("anim-walk");
+			}
+		}
+
 		// Set custom CSS properties for player's position
 		setCustomProperty(this.playerElement, "left", this.x + "px");
 		setCustomProperty(this.playerElement, "bottom", this.y + "px");
@@ -91,7 +101,12 @@ export class Player extends GameObject {
 
 	// Updates values on death
 	setDeth() {
-		this.playerElement.remove();
+		this.playerElement.classList.add("death");
+		setTimeout(() => {
+		this.playerElement.classList.remove("death");
+			this.playerElement.remove();
+		}, 1500)
+
 		this.width = 0;
 		this.height = 0;
 		this.dead = true;

@@ -147,7 +147,7 @@ function shoot(player, direction) {
   let bulletPositionX = parseInt(
     player.x + (direction === "left" ? 0 : player.width)
   );
-  let bulletPositionY = parseInt(player.y + player.height / 2);
+  let bulletPositionY = parseInt(player.y + player.height/2);
 
   // Creates the bullet
   let bullet = new Bullet(
@@ -215,8 +215,8 @@ function startGame() {
   restartBullets();
 
   // Creates new player objects
-  player1 = new Player(80, 100, 12, 26, "left");
-  player2 = new Player(500, 100, 12, 26, "rigth");
+  player1 = new Player(80, 100, 22, 26, "left");
+  player2 = new Player(500, 100, 22, 26, "rigth");
 
   // Restarts the number of rounds
   roundNum = 0;
@@ -307,8 +307,8 @@ function startRound() {
     if (roundNum > 1 && roundNum < 6) addWallBush();
 
     // Sets players positions to default
-    player1.setDefault(80, 100, 12, 26);
-    player2.setDefault(500, 100, 12, 26);
+    player1.setDefault(80, 100, 30, 44);
+    player2.setDefault(500, 100,30, 44);
 
     // Bullets in window array gets emptied
     bulletsInWindow = [];
@@ -389,8 +389,8 @@ function gameOver() {
   // When u click in restart button, game will be restarted
   restart.addEventListener("click", () => {
     removegameOverContainer();
-    player1.setDeth();
-    player2.setDeth();
+    player1.playerElement.remove();
+    player2.playerElement.remove();
     startGame();
   });
 
@@ -398,8 +398,8 @@ function gameOver() {
   mainMenu.addEventListener("click", () => {
     document.querySelector(".menu").style.opacity = 1;
     document.querySelector(".menu").style.zIndex = 10;
-    player1.setDeth();
-    player2.setDeth();
+    player1.playerElement.remove();
+    player2.playerElement.remove();
     gameOverContainer.remove();
   });
 }

@@ -296,6 +296,37 @@ div.rigth {
 
 }
 
+.anim-walk{
+  animation: anim-walk 1s infinite linear;
+}
+
+@keyframes anim-walk {
+  0%{
+    background-image: url("./Icons/animpl1.png");
+  }
+  50%{
+    background-image: url("./Icons/animpl2.png");
+  }100%{
+    background-image: url("./Icons/animpl3.png");
+  }
+}
+
+.death{
+  background-image: url("./Icons/animpdeath2.png");
+  animation: anim-death .5s linear;
+}
+
+@keyframes anim-death {
+  0%{
+    background-image: url("./Icons/animpl1.png");
+  }
+  50%{
+    background-image: url("./Icons/animpdeath1.png");
+  }100%{
+    background-image: url("./Icons/animpdeath2.png");
+  }
+}
+
 .round {
   height: 480px;
   width: 640px;
