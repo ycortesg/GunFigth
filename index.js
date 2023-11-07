@@ -221,6 +221,11 @@ function startGame() {
   // Restarts the number of rounds
   roundNum = 0;
 
+  // Restarts bushes and walls
+  bushesInWindow = [];
+  wallsAndBushesInWindow = [];
+  wallsInWindow = [];
+  
   // Adds the players to the gameContainer
   gameContainer.append(player1.getElement());
   gameContainer.append(player2.getElement());

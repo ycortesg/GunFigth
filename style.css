@@ -408,9 +408,12 @@ transform: scale(-1, 1);
 }
 
 #bullets-p1 div, #bullets-p2 div {
-    height: 5px;
-    width: 5px;
-    background-color: yellow;
+    height: 25px;
+    width: 25px;
+    background-image: url(Images/bala.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: -10px;
 }
 
 .hide-bullet{
