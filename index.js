@@ -214,10 +214,12 @@ function onPlayerDies() {
     if (!(player1.dead && player2.dead)) {
       setTimeout(() => {
         if ([player1, player2].every(e=>e.deaths < 3)){
+          setTimeout(() => {
+
           stopTimer();
-          startRound();
+          startRound();}, 1000)
         }
-      }, 1500);
+      }, 500);
     }
   }
 }
