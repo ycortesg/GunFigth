@@ -213,8 +213,10 @@ function onPlayerDies() {
     // In 1.5 seconds the new round starts
     if (!(player1.dead && player2.dead)) {
       setTimeout(() => {
-        stopTimer();
-        startRound();
+        if ([player1, player2].every(e=>e.deaths < 3)){
+          stopTimer();
+          startRound();
+        }
       }, 1500);
     }
   }
