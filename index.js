@@ -202,13 +202,21 @@ function onPlayerDies() {
   // onkeyup and onkeydown are unsigned
   onkeyup = onkeydown = () => {};
   clearInterval(idGameTimerInterval);
-
-  // In 1.5 seconds the new round starts
-  if (!(player1.dead && player2.dead)) {
+  if ([player1, player2].some(e=>e.deaths >=3) && ![player1, player2].every(e=>e.deaths >=3)){
     setTimeout(() => {
+      gameOver();
       stopTimer();
-      startRound();
-    }, 1500);
+      stopShootOutTimer();
+    },500)
+  }else{
+
+    // In 1.5 seconds the new round starts
+    if (!(player1.dead && player2.dead)) {
+      setTimeout(() => {
+        stopTimer();
+        startRound();
+      }, 1500);
+    }
   }
 }
 
