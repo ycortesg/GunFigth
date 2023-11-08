@@ -13,6 +13,12 @@ const menuBtn = document.querySelector(".start-buttom");
 const bulletsContainerP1 = document.querySelector("#bullets-p1");
 const bulletsContainerP2 = document.querySelector("#bullets-p2");
 
+// Audios
+let deathSound = new Audio("sounds/death.mp3");
+let shootSound = new Audio("sounds/shoot.mp3");
+gameContainer.append(deathSound);
+gameContainer.append(shootSound);
+
 // Game variables
 const maxBullets = 6;
 const gameTimeFull = 60;
@@ -143,6 +149,9 @@ function handleKeyDownKeyUp(e, state) {
 }
 
 function shoot(player, direction) {
+  shootSound.currentTime = 0;
+  shootSound.play();
+
   // Gets the initial position of the bullet
   let bulletPositionX = parseInt(
     player.x + (direction === "left" ? 0 : player.width)
@@ -177,6 +186,10 @@ function shoot(player, direction) {
 }
 
 function onPlayerDies() {
+
+  deathSound.currentTime = 0;
+  deathSound.play();
+
   stopShootOutTimer();
 
   // Stops all movement of both players
