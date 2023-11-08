@@ -60,7 +60,6 @@ menuBtn.addEventListener("click", () => {
 function update(time) {
   let deltaTime = time - lastUpdateTime;
   if (deltaTime > 1000 / frameRate) {
-
     // Updates players position
     player1.updatePlayer();
     player2.updatePlayer();
@@ -156,7 +155,7 @@ function shoot(player, direction) {
   let bulletPositionX = parseInt(
     player.x + (direction === "left" ? 0 : player.width)
   );
-  let bulletPositionY = parseInt(player.y + player.height/2);
+  let bulletPositionY = parseInt(player.y + player.height / 2);
 
   // Creates the bullet
   let bullet = new Bullet(
@@ -186,7 +185,6 @@ function shoot(player, direction) {
 }
 
 function onPlayerDies() {
-
   deathSound.currentTime = 0;
   deathSound.play();
 
@@ -202,22 +200,24 @@ function onPlayerDies() {
   // onkeyup and onkeydown are unsigned
   onkeyup = onkeydown = () => {};
   clearInterval(idGameTimerInterval);
-  if ([player1, player2].some(e=>e.deaths >=3) && ![player1, player2].every(e=>e.deaths >=3)){
+  if (
+    [player1, player2].some((e) => e.deaths >= 3) &&
+    ![player1, player2].every((e) => e.deaths >= 3)
+  ) {
     setTimeout(() => {
       gameOver();
       stopTimer();
       stopShootOutTimer();
-    },500)
-  }else{
-
+    }, 500);
+  } else {
     // In 1.5 seconds the new round starts
     if (!(player1.dead && player2.dead)) {
       setTimeout(() => {
-        if ([player1, player2].every(e=>e.deaths < 3)){
+        if ([player1, player2].every((e) => e.deaths < 3)) {
           setTimeout(() => {
-
-          stopTimer();
-          startRound();}, 1000)
+            stopTimer();
+            startRound();
+          }, 1000);
         }
       }, 500);
     }
@@ -250,7 +250,7 @@ function startGame() {
   bushesInWindow = [];
   wallsAndBushesInWindow = [];
   wallsInWindow = [];
-  
+
   // Adds the players to the gameContainer
   gameContainer.append(player1.getElement());
   gameContainer.append(player2.getElement());
@@ -286,17 +286,21 @@ function stopTimer() {
 
 function startShootOutTimer() {
   // If the shootout is runnig then it wont be runned again
-  if (shootOutTime == 0){
+  if (shootOutTime == 0) {
     shootOutTime = 10;
     idShootOutTimerInterval = setInterval(() => {
       shootOutTime -= 1;
       updateHeader();
-      
-      // If the shootout time is 0 or neither player has bullets left 
-      if (shootOutTime === 0 || [player1, player2].every(e=>(e.bulletsFired >= maxBullets))) {
-        // If  there bullets in the window and the time of the shootOut is more than 0 it doesn't 
+
+      // If the shootout time is 0 or neither player has bullets left
+      if (
+        shootOutTime === 0 ||
+        [player1, player2].every((e) => e.bulletsFired >= maxBullets)
+      ) {
+        // If  there bullets in the window and the time of the shootOut is more than 0 it doesn't
         // do anything otherways the shootOut timer is restarted
-        if (bulletsInWindow.some(e=>!e.destroyed) && shootOutTime > 0){}else{
+        if (bulletsInWindow.some((e) => !e.destroyed) && shootOutTime > 0) {
+        } else {
           shootOutTime = 0;
           disableBullets();
 
@@ -326,7 +330,9 @@ function startRound() {
 
   setTimeout(() => {
     startTimer();
-    [player1, player2].forEach(e=>{e.cooldownAction()})
+    [player1, player2].forEach((e) => {
+      e.cooldownAction();
+    });
 
     // Restart the amount of bullets each player has fired
     restartBullets();
@@ -339,7 +345,7 @@ function startRound() {
 
     // Sets players positions to default
     player1.setDefault(80, 140, 30, 44);
-    player2.setDefault(530, 140,30, 44);
+    player2.setDefault(530, 140, 30, 44);
 
     // Bullets in window array gets emptied
     bulletsInWindow = [];
@@ -486,11 +492,15 @@ function addWallBush() {
   let obj;
 
   // Makes the position y a value that does not overlaps any other object
-if (wallsAndBushesInWindow.length > 0) {
-  while(wallsAndBushesInWindow.some(e=>{return (e.y+30 > posY && e.y-30 < posY)})){
-    posY = Math.floor(Math.random() * 260);
+  if (wallsAndBushesInWindow.length > 0) {
+    while (
+      wallsAndBushesInWindow.some((e) => {
+        return e.y + 30 > posY && e.y - 30 < posY;
+      })
+    ) {
+      posY = Math.floor(Math.random() * 260);
+    }
   }
-}
   if (Math.random() > 0.3) {
     obj = new Bush(posX, posY, 18, 35);
     bushesInWindow.push(obj);
